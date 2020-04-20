@@ -32,6 +32,21 @@ function upgrader(updaterSet){
     return null;
 }
 
+/**
+ * @function getVersionWeight
+ * @param {String} version - The version string
+ * @returns {Number}
+ */
+function getVersionWeight(version){
+    var verArr = version.splice('.'),
+        verWeight = 0,
+        index = 0;
+    for(var cnt in verArr){
+        verWeight += (+verArr[cnt]||0.1) * 10^(3 - cnt);
+    }
+    return verWeight
+}
+
 // TODO 文件分档
 var defaultUpdater = {
     'layui': function layuiUpgrader(preInstance, curInstance){
