@@ -42,7 +42,7 @@ function getVersionWeight(version){
         verWeight = 0,
         index = 0;
     for(var cnt in verArr){
-        verWeight += (+verArr[cnt]||0.1) * 10^(3 - cnt);
+        verWeight += (+verArr[cnt]||0.1) * 10^(9 - 3*cnt);
     }
     return verWeight
 }
@@ -62,10 +62,10 @@ var defaultUpdater = {
         // 提取版本号权重，确定保留升级的
         // todo 将版本号提取函数剥离成 util
         each(preVersion.splice('.'), function(index, item){
-            preVersionWeight += (+item||0.1) * 10^(3 - index);
+            preVersionWeight += (+item||0.1) * 10^(9 - 3*index);
         });
         each(curVersion.splice('.'), function(index, item){
-            curVersionWeight += (+item||0.1) * 10^(3 - index);
+            curVersionWeight += (+item||0.1) * 10^(9 - 3*index);
         });
         for(var key in modules){
             if(modules.hasOwnProperty(key)){
